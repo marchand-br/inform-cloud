@@ -1,11 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import AdmHome from "@adm/AdmHome.tsx";
+import ErrorPage from "@/pages/ErrorPage";
 
-export default function AdmAppRoutes() {
-	return (
-        <>
-            <Route path="/" element={<AdmHome />} />
-        </>
-	)
-}
+export default [
+    <Route path="/adm"   element={<AdmHome />}   key="/adm" />,
+    <Route path="/adm/*" element={<ErrorPage />} key="/adm/*" />
+]

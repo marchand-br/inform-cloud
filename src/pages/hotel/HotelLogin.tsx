@@ -4,6 +4,6 @@ export default function HotelLogin() {
     let { slug } = useParams();
 
     return (
-        <h1>Hotel ${slug} Login</h1>
+        <h1>Hotel {slug} Login</h1>
     )
 }

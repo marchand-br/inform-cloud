@@ -1,11 +1,10 @@
-import { Routes, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import AdmLogin from "@adm/AdmLogin.tsx";
+import ErrorPage from "@/pages/ErrorPage";
 
-export default function AdmAuthRoutes() {
-	return (
-        <>
-            <Route path="/login" element={<AdmLogin />} />
-        </>
-	)
-}
+export default [
+    <Route path="/adm/login" element={<AdmLogin /> } key="/adm/login" />,
+    <Route path="/adm"       element={<AdmLogin />}  key="/adm" />,        
+    <Route path="/adm/*"     element={<ErrorPage />} key="/adm/*" />
+]
