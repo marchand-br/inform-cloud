@@ -18,7 +18,7 @@ export default function InformRoutes() {
 					{ idUser ? hotelAppRoutes : hotelAuthRoutes }
 				</Route>
 				<Route path="/adm">
-					{ idUser ? admAppRoutes : admAuthRoutes}
+					{ idUser ? admAppRoutes : admAuthRoutes }
 				</Route>
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>
