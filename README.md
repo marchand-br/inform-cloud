@@ -1,4 +1,4 @@
-# INFORM-CLOUD
+# INFORM-CLOUD ☁️
 
 Aplicação desenvolvida em React + Vite + Typescript, utilizando as seguintes tecnologias:
  * React-Router-DOM
