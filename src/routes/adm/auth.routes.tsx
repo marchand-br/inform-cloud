@@ -4,8 +4,8 @@ import AdmLogin from "@adm/AdmLogin.tsx";
 
 export default function AdmAuthRoutes() {
 	return (
-        <Routes>
+        <>
             <Route path="/login" element={<AdmLogin />} />
-        </Routes>
+        </>
 	)
 }
