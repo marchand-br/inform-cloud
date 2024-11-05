@@ -1,9 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Cloud, SignIn } from "phosphor-react";
 import { useForm } from "react-hook-form";
+import { AxiosError } from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
+
+import api from "@/services.api";
+import { login, selectUser } from "@/redux/user-slice";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/hooks/use-toast";
 import {
   Form,
   FormControl,
@@ -13,7 +21,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import api from "@/services.api";
 
 
 const formSchema = z.object({
@@ -24,6 +31,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 export default function AdmLogin() {
+    const { toast } = useToast();
+    const dispatch = useDispatch();
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -34,14 +43,38 @@ export default function AdmLogin() {
     });
     
     async function onSubmit(data: FormData) {
-        console.log(data);
+        try {
+            // api.defaults.headers.common['Authorization'] = "Bearer " + token;
+            api.defaults.headers.common['secret'] = import.meta.env.VITE_APP_SECRET;
 
-        const response = await api.post('adm/users/login', {
-            
-        })
+            const response = await api.post('adm/users/login', {
+                nome  : data.nome,
+                senha : data.senha,
+            });
 
+            dispatch(login({
+                id: +response.data.id_user,
+                token: response.data.token,
+                nome: data.nome,
+            }));
+        } 
+        catch (error) {
+            let message = String(error);
+            console.log(error);
+
+            if (error instanceof AxiosError) 
+                message = error.response?.data.message;
+
+            toast({
+                variant: "destructive",
+                title: "Erro ao fazer Login",
+                description: message,
+            })
+        }
     }
 
+    // console.log(useSelector((state: any) => state.user))
+    console.log(useSelector(selectUser));
 
     return (
         <div className="h-screen bg-quarto bg-cover bg-no-repeat flex justify-center md:justify-start" 
@@ -130,8 +163,9 @@ export default function AdmLogin() {
                         Esqueceu a sua senha? Clique aqui!
                     </a>
                 </Button>
-
             </div>
+
+            <Toaster />
         </div>
 
 
