@@ -1,22 +1,136 @@
-import { Cloud } from "phosphor-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Cloud, SignIn } from "phosphor-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+import api from "@/services.api";
+
+
+const formSchema = z.object({
+    nome  : z.string().min(3, {message: "O nome é obrigatório"}),
+    senha : z.string().min(4, {message: "A senha tem que ter no mínimo 4 dígitos"}),
+})
+
+type FormData = z.infer<typeof formSchema>
 
 export default function AdmLogin() {
-    return (
-        <div className="h-screen bg-quarto bg-cover bg-no-repeat flex justify-center md:justify-start" >
-            <div className={`
-                h-full w-full tam-1:w-[420px] tam-2:w-[520px] bg-card text-center px-8 md:px-16   
-                pt-12
-                border-x-8 border-x-slate-600 bg-clip-padding border-opacity-10 tam-2:border-l-0
 
+    const form = useForm<FormData>({
+        resolver: zodResolver(formSchema),
+        defaultValues: { 
+            nome: "",
+            senha: "",
+        }
+    });
+    
+    async function onSubmit(data: FormData) {
+        console.log(data);
+
+        const response = await api.post('adm/users/login', {
+            
+        })
+
+    }
+
+
+    return (
+        <div className="h-screen bg-quarto bg-cover bg-no-repeat flex justify-center md:justify-start" 
+            aria-label="Foto de Nik Lanús extraída do site Unsplash"
+        >
+            <div className={`
+                h-screen w-full bg-card flex flex-col justify-between 
+                tam-1:w-[420px] tam-2:w-[520px] 
+                pt-10 pb-8 px-7 tam-2:px-16 
+                border-x-8 border-x-slate-600 bg-clip-padding border-opacity-5 md:border-l-0 
             `}>
-                    <div className="flex gap-4 items-center justify-center mb-8">
-                        <h1 className="text-card-foreground text-3xl md:text-4xl font-medium">Inform Hotel Cloud</h1>
-                        <Cloud size={48} weight="bold" className="text-primary" />
+                <div className="my-8">
+                    <div className="flex items-center justify-center mb-8 gap-2 relative text-center">
+                        <h1 className="text-card-foreground text-3xl md:text-4xl font-semibold">
+                            &nbsp; Inform Hotel
+                        </h1>
+                        <h1 className="text-primary opacity-60 text-3xl md:text-4xl font-medium">
+                            Cloud
+                        </h1>
+                        <Cloud 
+                            size={42} weight="bold" 
+                            className="text-primary opacity-60 relative top-[-28px] md:top-[-30px] left-[-30px]" 
+                        />                        
                     </div>
-                    <h2 className="text-muted-foreground font-bold text-2xl mb-20">
+
+                    <h2 className="text-muted-foreground text-center font-medium text-lg tam-2:text-xl">
                         Gerencie seu hotel de forma descomplicada!
                     </h2>
-                    <p className="text-card-foreground text-2xl">Acesse sua conta</p>
+                </div>
+                
+                <div className="flex flex-1 flex-col">
+                    <div className="my-4">
+                        <p className="text-card-foreground text-xl tam-2:text-2xl font-medium text-center ">
+                            Acesse sua conta
+                        </p>
+                    </div>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2">
+                            <FormField
+                                control={form.control}
+                                name="nome"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Nome do usuário</FormLabel>
+                                        <FormControl>
+                                            <Input {...field} 
+                                                placeholder="Nome..."  
+                                                className="shadow-md" 
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name="senha"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Senha</FormLabel>
+                                        <FormControl>
+                                            <Input {...field}       
+                                                type="password" 
+                                                placeholder="Senha..." 
+                                                className="shadow-md"
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <div className="flex">
+                                <Button type="submit" className="uppercase flex-1 mt-8">
+                                    <SignIn size={32} />
+                                    Entrar
+                                </Button>                                
+                            </div>
+                        </form>
+                    </Form>
+                </div>
+
+                <Button asChild variant="link">
+                    <a href="/esqueci" className="text-primary pt-4 text-center">
+                        Esqueceu a sua senha? Clique aqui!
+                    </a>
+                </Button>
+
             </div>
         </div>
 
