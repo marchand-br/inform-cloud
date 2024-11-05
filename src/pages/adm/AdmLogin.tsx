@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Cloud, SignIn } from "phosphor-react";
+import { Cloud, SignIn, CircleNotch } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { z } from "zod";
 
 import api from "@/services.api";
-import { login, selectUser } from "@/redux/user-slice";
+import { login } from "@/redux/user-slice";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +34,7 @@ type FormData = z.infer<typeof formSchema>
 export default function AdmLogin() {
     const { toast } = useToast();
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -44,6 +46,7 @@ export default function AdmLogin() {
     
     async function onSubmit(data: FormData) {
         try {
+            setLoading(true);
             // api.defaults.headers.common['Authorization'] = "Bearer " + token;
             api.defaults.headers.common['secret'] = import.meta.env.VITE_APP_SECRET;
 
@@ -56,12 +59,16 @@ export default function AdmLogin() {
                 id: +response.data.id_user,
                 token: response.data.token,
                 nome: data.nome,
+                admin: true,
             }));
+
+            setLoading(false);
         } 
         catch (error) {
             let message = String(error);
             console.log(error);
-
+            setLoading(false);
+            
             if (error instanceof AxiosError) 
                 message = error.response?.data.message;
 
@@ -73,16 +80,13 @@ export default function AdmLogin() {
         }
     }
 
-    // console.log(useSelector((state: any) => state.user))
-    console.log(useSelector(selectUser));
-
     return (
         <div className="h-screen bg-quarto bg-cover bg-no-repeat flex justify-center md:justify-start" 
             aria-label="Foto de Nik Lanús extraída do site Unsplash"
         >
             <div className={`
                 h-screen w-full bg-card flex flex-col justify-between 
-                tam-1:w-[420px] tam-2:w-[520px] 
+                tam-1:w-[420px] tam-2:w-[520px] transition-all duration-300
                 pt-10 pb-8 px-7 tam-2:px-16 
                 border-x-8 border-x-slate-600 bg-clip-padding border-opacity-5 md:border-l-0 
             `}>
@@ -121,7 +125,7 @@ export default function AdmLogin() {
                                         <FormLabel>Nome do usuário</FormLabel>
                                         <FormControl>
                                             <Input {...field} 
-                                                placeholder="Nome..."  
+                                                placeholder="Nome"  
                                                 className="shadow-md" 
                                             />
                                         </FormControl>
@@ -139,7 +143,7 @@ export default function AdmLogin() {
                                         <FormControl>
                                             <Input {...field}       
                                                 type="password" 
-                                                placeholder="Senha..." 
+                                                placeholder="Senha" 
                                                 className="shadow-md"
                                             />
                                         </FormControl>
@@ -149,8 +153,14 @@ export default function AdmLogin() {
                             />
 
                             <div className="flex">
-                                <Button type="submit" className="uppercase flex-1 mt-8">
-                                    <SignIn size={32} />
+                                <Button type="submit" 
+                                    disabled={loading} 
+                                    className="uppercase flex-1 mt-8"
+                                >
+                                    {loading 
+                                        ? <CircleNotch size={32} className="animate-spin" />
+                                        : <SignIn size={32} />
+                                    }
                                     Entrar
                                 </Button>                                
                             </div>

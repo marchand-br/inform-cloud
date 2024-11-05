@@ -4,30 +4,40 @@ export interface IUser {
     id     : number;
     nome   : string;
     token  : string;
-    logado?: boolean;
+    admin  : boolean;
 }
 
-const initialState: IUser = {
+let initialState: IUser = {
     id    : 0,
     nome  : '',
     token : '',
-    logado: false,
+    admin : false,
 }
+
+const storage = localStorage.getItem('inform-cloud:user');
+
+if (storage) {
+    initialState = {...initialState, ...JSON.parse(storage)};
+};
 
 export const slice = createSlice({
     name: 'user', 
     initialState,
     reducers: {
         login(state, action: PayloadAction<IUser>) {
-            return {
+            state = {
                 ...state, 
                 id     : action.payload.id,
                 nome   : action.payload.nome,
                 token  : action.payload.token,
-                logado : true,
+                admin  : action.payload.admin,
             }
+            
+            localStorage.setItem('inform-cloud:user', JSON.stringify(state));
+            return state;
         },
         logout(state) { // logout não precisa de payload
+            localStorage.removeItem('inform-cloud:user');
             return {...state, ...initialState}
         }
     }
