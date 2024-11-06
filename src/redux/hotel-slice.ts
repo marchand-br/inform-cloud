@@ -1,7 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { selectUser } from "@/redux/user-slice";
-import { useSelector } from "react-redux";
-import api from "@/services.api";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface IHotel {
     id_hotel  : number;
@@ -21,22 +18,13 @@ export interface IHotel {
     cod_tab_preco: number;
 }
 
-export const fetchHotel =
-  createAsyncThunk('hotel/fetchHotel', async (slug: string) => {
-    const { token } = useSelector(selectUser);
-    const response = await api.get(`adm/clientes/slug/${slug}`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-    });
-    return response.data;
-  });
-
 
 let initialState = {} as IHotel;
 
 const storage = localStorage.getItem('inform-cloud:hotel');
 
 if (storage) {
-    initialState = {...initialState, ...JSON.parse(storage)};
+    initialState = {...JSON.parse(storage)};
 };
 
 export const slice = createSlice({
@@ -47,21 +35,21 @@ export const slice = createSlice({
             localStorage.removeItem('inform-cloud:hotel');
             initialState = {} as IHotel;
             state = initialState;
-            // return initialState;
+            return state;
+        },
+        setHotel (state, action: PayloadAction<IHotel>) {
+            state = {
+                ...state, 
+                ...action.payload
+            }
+            
+            localStorage.setItem('inform-cloud:hotel', JSON.stringify(state));
+            return state;
         }
-    },
-    extraReducers: (builder) => {
-        builder.addCase(fetchHotel.fulfilled, (state, action) => {
-            state = action.payload;
-        })
-        //, builder.addCase(fetchHotel.rejected, (state, action) => {
-        //     state.loading = false;
-        // })
     }
-
 })
 
-export const { clear } = slice.actions;
+export const { clear, setHotel } = slice.actions;
 
 export const selectHotel = (state: any) => state.hotel;
 

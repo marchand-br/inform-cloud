@@ -1,9 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./user-slice";
+import hotelReducer from "./hotel-slice";
 
-export default configureStore({
+export const store = configureStore({
     reducer: {
       user: userReducer,
-      //middleware: usado p/ req. asíncronas
-    }
+      hotel: hotelReducer,
+    },
+    // middleware: [],
 })
+
+export type AppDispatch = typeof store.dispatch;
+
+export default store;

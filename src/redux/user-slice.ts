@@ -34,12 +34,12 @@ export const slice = createSlice({
             }
             
             localStorage.setItem('inform-cloud:user', JSON.stringify(state));
-            // return state;
+            return state;
         },
         logout(state) { // logout não precisa de payload
             localStorage.removeItem('inform-cloud:user');
             state = initialState;
-            // return {...state, ...initialState}
+            return {...state, ...initialState}
         }
     }
 })

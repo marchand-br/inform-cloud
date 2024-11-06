@@ -82,8 +82,12 @@ export default function AdmLogin() {
     }
 
     return (
-        <div className="h-screen bg-quarto bg-cover bg-no-repeat flex justify-center md:justify-start" 
+        <div 
             aria-label="Foto de Nik Lanús extraída do site Unsplash"
+            className={`
+                h-screen bg-quarto bg-cover bg-no-repeat flex 
+                justify-center md:justify-start
+            `}
         >
             <div className={`
                 h-screen w-full bg-card flex flex-col justify-between 
@@ -105,14 +109,14 @@ export default function AdmLogin() {
                         />                        
                     </div>
 
-                    <h2 className="text-muted-foreground text-center font-medium text-lg tam-2:text-xl">
-                        Gerencie seu hotel de forma descomplicada!
+                    <h2 className="text-muted-foreground text-center font-medium text-xl tam-2:text-2xl">
+                        Painel Administrativo
                     </h2>
                 </div>
                 
                 <div className="flex flex-1 flex-col">
                     <div className="my-4">
-                        <p className="text-card-foreground text-xl tam-2:text-2xl font-medium text-center ">
+                        <p className="text-card-foreground text-lg tam-2:text-xl font-medium text-center ">
                             Acesse sua conta
                         </p>
                     </div>
@@ -178,7 +182,5 @@ export default function AdmLogin() {
 
             <Toaster />
         </div>
-
-
     )
 }
