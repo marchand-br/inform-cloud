@@ -50,18 +50,19 @@ export default function AdmLogin() {
             // api.defaults.headers.common['Authorization'] = "Bearer " + token;
             api.defaults.headers.common['secret'] = import.meta.env.VITE_APP_SECRET;
 
-            const response = await api.post('adm/users/login', {
+            let response = await api.post('adm/users/login', {
                 nome  : data.nome,
                 senha : data.senha,
             });
 
-            dispatch(login({
+            const dataUser = {
                 id: +response.data.id_user,
                 token: response.data.token,
                 nome: data.nome,
                 admin: true,
-            }));
+            }
 
+            dispatch(login(dataUser));
             setLoading(false);
         } 
         catch (error) {

@@ -6,6 +6,7 @@ import hotelAppRoutes from "./hotel/app.routes";
 import hotelAuthRoutes from "./hotel/auth.routes";
 import admAppRoutes from "./adm/app.routes";
 import admAuthRoutes from "./adm/auth.routes";
+import HeroPage from "@/pages/HeroPage";
 
 
 export default function InformRoutes() {
@@ -14,11 +15,12 @@ export default function InformRoutes() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/h/:slug">
-					{ idUser ? hotelAppRoutes : hotelAuthRoutes }
-				</Route>
+				<Route path="/" element={<HeroPage />} />
 				<Route path="/adm">
 					{ idUser ? admAppRoutes : admAuthRoutes }
+				</Route>
+				<Route path="/:slug">
+					{ idUser ? hotelAppRoutes : hotelAuthRoutes }
 				</Route>
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>

@@ -1,9 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/user-slice";
+import { Button } from "@/components/ui/button";
 
 export default function HotelHome() {
-    let { slug } = useParams();
-    
+    const dispatch = useDispatch();
+
+    function handleLogout() {
+        dispatch(logout());
+    }
+
     return (
-        <h1>Hotel {slug} Home</h1>
+        <div className="p-10 flex items-center gap-4">
+            <h1>Inform Hotel Cloud</h1>
+            <Button onClick={handleLogout}>Sair</Button>
+        </div>
     )
 }
