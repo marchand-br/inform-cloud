@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "@/services.api";
 import { emptyObject } from "@/lib/utils";
 
@@ -89,7 +89,7 @@ export const slice = createSlice({
 })
 
 
-export const { clearHotel, setHotel } = slice.actions;
+export const { clearHotel } = slice.actions;
 
 export const selectHotel = (state: any) => state.hotel.data;
 export const getHotelStatus = (state: any) => state.hotel.status;

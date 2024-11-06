@@ -3,11 +3,13 @@ import { useSelector, useDispatch, TypedUseSelectorHook } from "react-redux";
 
 import userReducer from "./user-slice";
 import hotelReducer from "./hotel-slice";
+import themeReducer from "./theme-slice";
 
 export const store = configureStore({
     reducer: {
-      user: userReducer,
-      hotel: hotelReducer,
+      user  : userReducer,
+      hotel : hotelReducer,
+      theme : themeReducer,
     },
     // middleware: [],
 })

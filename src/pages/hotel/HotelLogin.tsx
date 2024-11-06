@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Cloud, SignIn, CircleNotch } from "phosphor-react";
 import { useAppDispatch } from "@/redux/store";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
@@ -23,7 +24,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useSelector } from "react-redux";
 
 
 const formSchema = z.object({
@@ -112,12 +112,11 @@ export default function HotelLogin() {
         }
     }
 
-    console.log(hotelStatus)
     return (
         <div 
             aria-label="Foto de Nik Lanús extraída do site Unsplash"
             className={`
-                h-screen bg-quarto bg-cover bg-no-repeat flex 
+                h-screen bg-quarto bg-cover bg-no-repeat flex
                 justify-center md:justify-start
             `}
         >
@@ -159,11 +158,13 @@ export default function HotelLogin() {
                                 name="nome"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Nome do usuário</FormLabel>
+                                        <FormLabel className="text-foreground">
+                                            Nome do usuário
+                                        </FormLabel>
                                         <FormControl>
                                             <Input {...field} 
                                                 placeholder="Nome"  
-                                                className="shadow-md" 
+                                                className="text-foreground shadow-md" 
                                             />
                                         </FormControl>
                                         <FormMessage />
@@ -176,12 +177,12 @@ export default function HotelLogin() {
                                 name="senha"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Senha</FormLabel>
+                                        <FormLabel className="text-foreground">Senha</FormLabel>
                                         <FormControl>
                                             <Input {...field}       
                                                 type="password" 
                                                 placeholder="Senha" 
-                                                className="shadow-md"
+                                                className="text-foreground shadow-md"
                                             />
                                         </FormControl>
                                         <FormMessage />
