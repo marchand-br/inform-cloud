@@ -38,6 +38,7 @@ export const slice = createSlice({
         },
         logout(state) { // logout não precisa de payload
             localStorage.removeItem('inform-cloud:user');
+            localStorage.removeItem('inform-cloud:hotel');
             state = initialState;
             return {...state, ...initialState}
         }

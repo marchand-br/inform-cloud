@@ -1,12 +1,13 @@
-import { useDispatch } from "react-redux";
 import { logout } from "@/redux/user-slice";
 import { Button } from "@/components/ui/button";
+import { useAppDispatch } from "@/redux/store";
 
 export default function AdmHome() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     function handleLogout() {
         dispatch(logout());
+        window.location.reload();
     }
 
     return (

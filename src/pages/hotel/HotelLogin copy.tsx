@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Cloud, SignIn, CircleNotch } from "phosphor-react";
-import { useAppDispatch } from "@/redux/store";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
@@ -9,7 +8,9 @@ import { z } from "zod";
 
 import api from "@/services.api";
 import { login } from "@/redux/user-slice";
-import { selectHotel, getHotelStatus, getHotelError, fetchHotel } from "@/redux/hotel-slice";
+import { setHotel } from "@/redux/hotel-slice";
+import { useAppDispatch } from "@/redux/store";
+import { emptyObject } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,7 +24,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useSelector } from "react-redux";
 
 
 const formSchema = z.object({
@@ -38,12 +38,10 @@ export default function HotelLogin() {
     const dispatch = useAppDispatch(); // useDispatch<AppDispatch>();
     const { slug } = useParams();
 
-    const hotelData = useSelector(selectHotel);
-    const hotelStatus = useSelector(getHotelStatus);
-    const hotelError = useSelector(getHotelError);
-
     const [id_hotel, setId_hotel] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [bloqueado, setBloqueado] = useState(false);
+    const [ativo, setAtivo] = useState(true);
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -53,24 +51,61 @@ export default function HotelLogin() {
         }
     });
 
-    useEffect(() => {        
-        if (hotelStatus === 'idle') {
-            setLoading(true);
-            dispatch(fetchHotel(slug!));
-            setLoading(false);
-        }
+    async function getHotel(slug: string) {
+        let titleError = "";
 
-        if (hotelStatus === 'failed') {
+        try {
+            setLoading(true);
+            const response = await api.get(`adm/clientes/slug/${slug}`, {
+                headers: { 
+                    'secret': import.meta.env.VITE_APP_SECRET,                    
+                }
+            });
+
+            setLoading(false);
+
+            if (emptyObject(response?.data)) {
+                setAtivo(false);
+                throw new Error(`Hotel (${slug}) não localizado.`);
+            }
+
+            if (response.data.ativo !== "S") {
+                setAtivo(false);
+                titleError = `Hotel (${slug}) inativo.`;            
+                throw new Error("Entre em contato com a Marchand");
+            }
+
+            if (response.data.bloqueado === "S") {
+                setBloqueado(true);
+                titleError = `Hotel ${slug} bloqueado.`;
+                throw new Error("Entre em contato com a Marchand");
+            }
+
+            setId_hotel(response.data.id_hotel);
+            dispatch(setHotel(response.data));
+        }
+        catch (error) {
+            let message = String(error);
+            console.log(error);
+            setLoading(false);
+            
+            if (error instanceof AxiosError) 
+                message = error.response?.data.message;
+
+            message = message.replace('Error:', '');
+
             toast({
                 variant: "destructive",
-                title: "Erro ao buscar dados do hotel",
-                description: hotelError,
-            });
-        } 
-        else if (hotelStatus === 'succeeded') {
-            setId_hotel(hotelData.id_hotel);
+                title: titleError || "Erro ao buscar dados do hotel",
+                description: message,
+            })
         }
-    }, [hotelStatus, dispatch])
+    }
+
+    useEffect(() => {        
+        getHotel(slug!);
+
+    }, [])
     
     
     async function onSubmit(data: FormData) {
@@ -112,7 +147,6 @@ export default function HotelLogin() {
         }
     }
 
-    console.log(hotelStatus)
     return (
         <div 
             aria-label="Foto de Nik Lanús extraída do site Unsplash"
@@ -191,10 +225,10 @@ export default function HotelLogin() {
 
                             <div className="flex">
                                 <Button type="submit" 
-                                    disabled={hotelStatus !== 'succeeded'} 
+                                    disabled={loading || bloqueado || !ativo} 
                                     className="uppercase flex-1 mt-8"
                                 >
-                                    {loading
+                                    {loading 
                                         ? <CircleNotch size={32} className="animate-spin" />
                                         : <SignIn size={32} />
                                     }

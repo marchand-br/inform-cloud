@@ -3,7 +3,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Cloud, SignIn, CircleNotch } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
-import { useDispatch } from "react-redux";
 import { z } from "zod";
 
 import api from "@/services.api";
@@ -21,6 +20,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useAppDispatch } from "@/redux/store";
 
 
 
@@ -33,7 +33,7 @@ type FormData = z.infer<typeof formSchema>
 
 export default function AdmLogin() {
     const { toast } = useToast();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const [loading, setLoading] = useState(false);
 
     const form = useForm<FormData>({

@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { selectUser } from "@/redux/user-slice";
 import ErrorPage from "@/pages/ErrorPage";
 import hotelAppRoutes from "./hotel/app.routes";
@@ -7,10 +6,11 @@ import hotelAuthRoutes from "./hotel/auth.routes";
 import admAppRoutes from "./adm/app.routes";
 import admAuthRoutes from "./adm/auth.routes";
 import HeroPage from "@/pages/HeroPage";
+import { useAppSelector } from "@/redux/store";
 
 
 export default function InformRoutes() {
-    const { id: idUser } = useSelector(selectUser);
+    const { id: idUser } = useAppSelector(selectUser);
 	
 	return (
 		<BrowserRouter>
