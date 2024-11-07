@@ -7,8 +7,10 @@ import { useTheme } from "@/hooks/use-theme";
 
 export default function HotelHome() {
     const dispatch = useAppDispatch();
-    const [color, setColor] = useState("blue");
-    const [dark, setDark] = useState(false);
+	const theme = useTheme();
+
+    const [color, setColor] = useState(theme.name);
+    const [dark, setDark] = useState(theme.dark ? 'dark' : 'light');
 
     function handleLogout() {
         dispatch(logout());
@@ -16,27 +18,38 @@ export default function HotelHome() {
     }
 
     function handleColor(event: any) {
-        setColor(event.target.value);
+        const themeName: string = event?.target.value;
+        const themeColor = dark + "-" + themeName;
+
+        setColor(themeName);
+
         const theme = {
-            color: event.target.value, 
-            dark: false 
+            name  : themeName,
+            color : themeColor,
+            dark  : dark === 'dark'
         }
+
         dispatch(changeTheme(theme));
     }
 
-    function handleDark() {
-        setDark(prev => !prev);
-        console.log(dark)
+    function handleDark(event: any) {
+        const dark = event?.target.value;
+        const themeColor = dark + "-" + color;
+
+        setDark(dark);
+        
         const theme = {
-            color,
-            dark
+            name  : color,
+            color : themeColor,
+            dark  : dark === 'dark'
         }
+
         dispatch(changeTheme(theme));
     }
 
     return (
-        <div className={`p-10 flex flex-col gap-10 bg-background`}>
-            <h1 className="text-card-foreground text-3xl md:text-4xl font-semibold">
+        <div className={`h-screen p-10 flex flex-col gap-10`}>
+            <h1 className="text-3xl md:text-4xl font-semibold">
                 Inform Hotel Cloud
             </h1>
 
@@ -59,13 +72,17 @@ export default function HotelHome() {
                 </select>
             </div>
 
-            <div>
-                <label htmlFor="dark">Tema Escuro?  </label>
-                    <input type="checkbox" 
-                        name="dark" id="dark" 
-                        checked={dark}
-                        onChange={handleDark}
-                    />
+            <div className="flex flex-col text-foreground">
+                <label htmlFor="dark">Tipo de tema:</label>
+                <select 
+                    name="dark" id="dark" 
+                    className="w-40" 
+                    value={dark} 
+                    onChange={handleDark}
+                >
+                    <option value="light">Tema claro</option>
+                    <option value="dark">Tema escuro</option>
+                </select>
             </div>
 
             <Button className="w-40" onClick={handleLogout}>Sair</Button>

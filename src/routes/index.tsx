@@ -7,14 +7,13 @@ import admAppRoutes from "./adm/app.routes";
 import admAuthRoutes from "./adm/auth.routes";
 import HeroPage from "@/pages/HeroPage";
 import { useAppSelector } from "@/redux/store";
-import { useTheme } from "@/hooks/use-theme";
+import Layout from "@/components/Layout";
 
 export default function InformRoutes() {
     const { id: idUser } = useAppSelector(selectUser);
-	const theme = useTheme();
 
 	return (
-		<div className={theme}>
+		<Layout>
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<HeroPage />} />
@@ -27,6 +26,6 @@ export default function InformRoutes() {
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</BrowserRouter>
-		</div>
+		</Layout>
 	)
 }

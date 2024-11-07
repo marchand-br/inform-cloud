@@ -5,11 +5,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface ITheme {
     color  : string;
     dark   : boolean;
+    name   : string;
 }
 
 let initialState: ITheme = {
-    color : 'blue',
+    color : 'light-blue',
     dark  : false,
+    name  : 'blue'
 }
 
 const storage = localStorage.getItem('inform-cloud:theme');
@@ -27,6 +29,7 @@ export const slice = createSlice({
                 ...state, 
                 color : action.payload.color,
                 dark  : action.payload.dark,
+                name  : action.payload.name,
             }
             localStorage.setItem('inform-cloud:theme', JSON.stringify(state));
             return state;

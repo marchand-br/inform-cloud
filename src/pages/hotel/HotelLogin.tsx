@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Cloud, SignIn, CircleNotch } from "phosphor-react";
+import { SignIn, CircleNotch } from "phosphor-react";
 import { useAppDispatch } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -24,6 +24,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import LogoInform from "@/components/LogoInform";
 
 
 const formSchema = z.object({
@@ -115,37 +116,25 @@ export default function HotelLogin() {
     return (
         <div 
             aria-label="Foto de Nik Lanús extraída do site Unsplash"
-            className={`
-                h-screen bg-quarto bg-cover bg-no-repeat flex
-                justify-center md:justify-start
-            `}
+            className="h-screen bg-quarto bg-cover bg-no-repeat flex justify-center md:justify-start"
         >
             <div className={`
-                h-screen w-full bg-card flex flex-col justify-between 
+                h-screen w-full bg-card flex flex-col justify-between
                 tam-1:w-[420px] tam-2:w-[520px] transition-all duration-300
-                pt-10 pb-8 px-7 tam-2:px-16 
+                pt-10 pb-8 
                 border-x-8 border-x-slate-600 bg-clip-padding border-opacity-5 md:border-l-0 
             `}>
-                <div className="my-8">
-                    <div className="flex items-center justify-center mb-8 gap-2 relative text-center">
-                        <h1 className="text-card-foreground text-3xl md:text-4xl font-semibold">
-                            &nbsp; Inform Hotel
-                        </h1>
-                        <h1 className="text-primary opacity-60 text-3xl md:text-4xl font-medium">
-                            Cloud
-                        </h1>
-                        <Cloud 
-                            size={42} weight="bold" 
-                            className="text-primary opacity-60 relative top-[-28px] md:top-[-30px] left-[-30px]" 
-                        />                        
+                <div className="mb-8">
+                    <div className="mt-2 mb-8">
+                        <LogoInform center />
                     </div>
 
-                    <h2 className="text-muted-foreground text-center font-medium text-lg tam-2:text-xl">
+                    <h2 className="text-muted-foreground text-center font-medium px-8 tam-2:px-16 text-lg tam-2:text-xl">
                         Gerencie seu hotel de forma descomplicada!
                     </h2>
                 </div>
                 
-                <div className="flex flex-1 flex-col">
+                <div className="flex flex-1 flex-col px-8 tam-2:px-16">
                     <div className="my-4">
                         <p className="text-card-foreground text-lg tam-2:text-xl font-medium text-center ">
                             Acesse sua conta
