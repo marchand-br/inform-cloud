@@ -101,7 +101,7 @@ export default function HotelLogin() {
             if (error instanceof AxiosError) 
                 message = error.response?.data.message;
 
-            appToast(message, "danger");
+            appToast(message, "danger", 'bottom-right');
         }
     }
 

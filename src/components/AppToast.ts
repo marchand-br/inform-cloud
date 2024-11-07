@@ -7,22 +7,23 @@ export function appToast(
 	duration : number = 3000, 
 ) {
 
-	const background = (variant === 'danger')
-		? "text-white"
-		: "hsl(var(--secondary))";
-		
-	const color = (variant === 'danger')
-		? "text-red-700"
-		: "hsl(var(--secondary-foreground))";		
-
-	return (
-		toast(message, {
-			duration: duration,
-			position: position,
-			style: {
-				background,
-				color,
-			}
-		})
-	)
+	if (variant === 'danger') {
+		return (
+			toast(message, {
+				duration: duration,
+				position: position,
+				style: {
+					background: "rgb(185, 28, 28)",
+					color: "#FFFFFF",
+				}
+			})
+		)
+	} else {
+		return (
+			toast(message, {
+				duration: duration,
+				position: position,
+			})
+		)
+	}
 }

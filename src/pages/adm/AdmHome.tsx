@@ -51,7 +51,6 @@ export default function AdmHome() {
     return (
         <AdmLayout>
             <div className={`p-10 flex flex-col gap-10`}>
-
                 <div className="flex flex-col">
                     <label htmlFor="color">Selecione a cor:</label>
                     <select 

@@ -69,20 +69,19 @@ export default function AdmLogin() {
         } 
         catch (error) {
             let message = String(error);
-            console.log(error);
             setLoading(false);
             
             if (error instanceof AxiosError) 
                 message = error.response?.data.message;
 
-            appToast(message, "danger", 'top-center');
+            appToast(message, "danger", 'bottom-right');
         }
     }
 
     return (
         <div 
             aria-label="Foto de Nik Lanús extraída do site Unsplash"
-            className="h-screen bg-quarto bg-cover bg-no-repeat flex justify-center md:justify-start"
+            className="h-screen bg-quarto bg-cover bg-no-repeat lex justify-center md:justify-start"
         >
             <div className={`
                 h-screen w-full bg-card flex flex-col justify-between 

@@ -31,11 +31,12 @@ export default function AdmLayout({ children }: Props) {
             </header>
 
             <main className='flex'>
-                <div>
+                <div className='w-12'>
                     {/* menu lateral */}
                 </div>
-                
-                { children }
+                <div className="w-full">
+                    { children }
+                </div>
             </main>
         </div>
     )
