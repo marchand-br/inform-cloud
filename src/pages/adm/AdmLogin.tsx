@@ -2,6 +2,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignIn, CircleNotch } from "phosphor-react";
 import { useForm } from "react-hook-form";
+import { Toaster } from "react-hot-toast";
 import { AxiosError } from "axios";
 import { z } from "zod";
 
@@ -10,8 +11,6 @@ import { login } from "@/redux/user-slice";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Toaster } from "@/components/ui/toaster";
-import { useToast } from "@/hooks/use-toast";
 import {
   Form,
   FormControl,
@@ -20,8 +19,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
 import { useAppDispatch } from "@/redux/store";
 import LogoInform from "@/components/LogoInform";
+import { appToast } from "@/components/AppToast";
 
 
 
@@ -33,7 +34,6 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 export default function AdmLogin() {
-    const { toast } = useToast();
     const dispatch = useAppDispatch();
     const [loading, setLoading] = useState(false);
 
@@ -75,11 +75,7 @@ export default function AdmLogin() {
             if (error instanceof AxiosError) 
                 message = error.response?.data.message;
 
-            toast({
-                variant: "destructive",
-                title: "Erro ao fazer Login",
-                description: message,
-            })
+            appToast(message, "danger", 'top-center');
         }
     }
 

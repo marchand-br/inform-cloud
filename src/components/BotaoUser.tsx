@@ -1,5 +1,5 @@
 import { User, Key, SignOut } from "phosphor-react";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { Button } from "./ui/button";
 import {
     Popover,
@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useAppDispatch } from "@/redux/store";
 import { logout } from "@/redux/user-slice";
 import ShowDialog from "./ShowDialog";
+import { appToast } from "./AppToast";
 
   
 export default function BotaoUser() {
@@ -23,14 +24,7 @@ export default function BotaoUser() {
     }
 
     function handleMudarSenha() {
-        toast("Estamos trabalhando nisso...", {
-            duration: 3000,
-            position: 'top-center',
-            style: {
-                background: "hsl(var(--secondary))",
-                color: "hsl(var(--secondary-foreground))"
-            }
-        })
+        appToast("Estamos trabalhando nisso...");
     }
 
     return (

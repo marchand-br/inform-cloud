@@ -7,9 +7,10 @@ interface Props {
 
 export default function Layout({ children }: Props) {
 	const theme = useTheme();
+    console.log(theme.color)
 
     return (
-        <div className={`${theme.color} bg-background text-foreground`}>
+        <div className={`bg-background text-foreground color-scheme=${theme.color}`}>
             { children }
         </div>
     )

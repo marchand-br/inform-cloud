@@ -4,18 +4,13 @@ import { SignIn, CircleNotch } from "phosphor-react";
 import { useAppDispatch } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
 import { z } from "zod";
 
-import api from "@/services.api";
-import { login } from "@/redux/user-slice";
-import { selectHotel, getHotelStatus, getHotelError, fetchHotel } from "@/redux/hotel-slice";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Toaster } from "@/components/ui/toaster";
-import { useToast } from "@/hooks/use-toast";
 import {
   Form,
   FormControl,
@@ -24,7 +19,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
+import api from "@/services.api";
+import { login } from "@/redux/user-slice";
+import { selectHotel, getHotelStatus, getHotelError, fetchHotel } from "@/redux/hotel-slice";
 import LogoInform from "@/components/LogoInform";
+import { appToast } from "@/components/AppToast";
 
 
 const formSchema = z.object({
@@ -35,7 +35,6 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 export default function HotelLogin() {
-    const { toast } = useToast();
     const dispatch = useAppDispatch(); // useDispatch<AppDispatch>();
     const { slug } = useParams();
 
@@ -62,11 +61,7 @@ export default function HotelLogin() {
         }
 
         if (hotelStatus === 'failed') {
-            toast({
-                variant: "destructive",
-                title: "Erro ao buscar dados do hotel",
-                description: hotelError,
-            });
+            appToast(hotelError, "danger");
         } 
         else if (hotelStatus === 'succeeded') {
             setId_hotel(hotelData.id_hotel);
@@ -106,11 +101,7 @@ export default function HotelLogin() {
             if (error instanceof AxiosError) 
                 message = error.response?.data.message;
 
-            toast({
-                variant: "destructive",
-                title: "Erro ao fazer Login",
-                description: message,
-            })
+            appToast(message, "danger");
         }
     }
 
