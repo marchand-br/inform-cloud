@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Cloud, SignIn, CircleNotch } from "phosphor-react";
+import { SignIn, CircleNotch } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import { AxiosError } from "axios";
 import { z } from "zod";
@@ -57,10 +57,11 @@ export default function AdmLogin() {
             });
 
             const dataUser = {
-                id: +response.data.id_user,
-                token: response.data.token,
-                nome: data.nome,
-                admin: true,
+                id    : +response.data.id_user,
+                token : response.data.token,
+                nome  : data.nome,
+                email : response.data.email,
+                admin : true,
             }
 
             dispatch(login(dataUser));

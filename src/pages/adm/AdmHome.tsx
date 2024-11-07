@@ -50,10 +50,7 @@ export default function AdmHome() {
 
     return (
         <AdmLayout>
-            <div className={`h-screen p-10 flex flex-col gap-10`}>
-                <h1 className="text-3xl md:text-4xl font-semibold">
-                    Painel Administrativo
-                </h1>
+            <div className={`p-10 flex flex-col gap-10`}>
 
                 <div className="flex flex-col">
                     <label htmlFor="color">Selecione a cor:</label>

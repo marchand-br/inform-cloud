@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/redux/store";
 import { changeTheme } from "@/redux/theme-slice";
 import { useTheme } from "@/hooks/use-theme";
+import HotelLayout from "@/components/HotelLayout";
 
 export default function HotelHome() {
     const dispatch = useAppDispatch();
@@ -48,44 +49,42 @@ export default function HotelHome() {
     }
 
     return (
-        <div className={`h-screen p-10 flex flex-col gap-10`}>
-            <h1 className="text-3xl md:text-4xl font-semibold">
-                Inform Hotel Cloud
-            </h1>
+        <HotelLayout>
+            <div className={`h-screen p-10 flex flex-col gap-10`}>
+                
+                <div className="flex flex-col">
+                    <label htmlFor="color">Selecione a cor:</label>
+                    <select 
+                        name="color" id="color" 
+                        className="w-40" 
+                        value={color} 
+                        onChange={handleColor}
+                    >
+                        <option value="blue">Azul</option>
+                        <option value="red">Vermelho</option>
+                        <option value="green">Verde</option>
+                        <option value="yellow">Amarelo</option>
+                        <option value="orange">Laranja</option>
+                        <option value="violet">Violeta</option>
+                        <option value="zinc">Zinco</option>
+                    </select>
+                </div>
 
+                <div className="flex flex-col text-foreground">
+                    <label htmlFor="dark">Tipo de tema:</label>
+                    <select 
+                        name="dark" id="dark" 
+                        className="w-40" 
+                        value={dark} 
+                        onChange={handleDark}
+                    >
+                        <option value="light">Tema claro</option>
+                        <option value="dark">Tema escuro</option>
+                    </select>
+                </div>
 
-            <div className="flex flex-col">
-                <label htmlFor="color">Selecione a cor:</label>
-                <select 
-                    name="color" id="color" 
-                    className="w-40" 
-                    value={color} 
-                    onChange={handleColor}
-                >
-                    <option value="blue">Azul</option>
-                    <option value="red">Vermelho</option>
-                    <option value="green">Verde</option>
-                    <option value="yellow">Amarelo</option>
-                    <option value="orange">Laranja</option>
-                    <option value="violet">Violeta</option>
-                    <option value="zinc">Zinco</option>
-                </select>
+                <Button className="w-40" onClick={handleLogout}>Sair</Button>
             </div>
-
-            <div className="flex flex-col text-foreground">
-                <label htmlFor="dark">Tipo de tema:</label>
-                <select 
-                    name="dark" id="dark" 
-                    className="w-40" 
-                    value={dark} 
-                    onChange={handleDark}
-                >
-                    <option value="light">Tema claro</option>
-                    <option value="dark">Tema escuro</option>
-                </select>
-            </div>
-
-            <Button className="w-40" onClick={handleLogout}>Sair</Button>
-        </div>
+        </HotelLayout>
     )
 }

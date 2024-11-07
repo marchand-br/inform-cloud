@@ -9,7 +9,7 @@ import HeroPage from "@/pages/HeroPage";
 import { useAppSelector } from "@/redux/store";
 import Layout from "@/components/Layout";
 
-export default function InformRoutes() {
+export default function AppRoutes() {
     const { id: idUser } = useAppSelector(selectUser);
 
 	return (

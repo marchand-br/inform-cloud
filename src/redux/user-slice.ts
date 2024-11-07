@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface IUser {
     id     : number;
     nome   : string;
+    email  : string;
     token  : string;
     admin  : boolean;
 }
@@ -10,6 +11,7 @@ export interface IUser {
 let initialState: IUser = {
     id    : 0,
     nome  : '',
+    email : '',
     token : '',
     admin : false,
 }
@@ -29,6 +31,7 @@ export const slice = createSlice({
                 ...state, 
                 id     : action.payload.id,
                 nome   : action.payload.nome,
+                email  : action.payload.email,
                 token  : action.payload.token,
                 admin  : action.payload.admin,
             }

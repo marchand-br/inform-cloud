@@ -90,6 +90,7 @@ export default function HotelLogin() {
             const dataUser = {
                 id    : +response.data.id_user,
                 token : response.data.token,
+                email : response.data.email,
                 nome  : data.nome,
                 admin : false,
             }

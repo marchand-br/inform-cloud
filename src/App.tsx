@@ -1,8 +1,8 @@
-import InformRoutes from "./routes"
+import AppRoutes from "./routes"
 
 function App() {
   return (
-    <InformRoutes />
+    <AppRoutes />
   )
 }
 
