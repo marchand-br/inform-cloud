@@ -10,7 +10,7 @@ import {
 import { useAuth } from "@/hooks/use-auth";
 import { useAppDispatch } from "@/redux/store";
 import { logout } from "@/redux/user-slice";
-import ShowDialog from "./ShowDialog";
+import ShowDialog from "@/components/ShowDialog";
 import { appToast } from "./AppToast";
 
   
@@ -28,22 +28,22 @@ export default function BotaoUser() {
     }
 
     return (
-        <div>
+        <>
             <Popover>
                 <PopoverTrigger asChild>
                     <Button variant="outline">
-                        <User size={64} weight='bold' className='text-primary'  />
+                        <User size={32} weight='bold' />
                     </Button>
                 </PopoverTrigger>
 
-                <PopoverContent className="w-80">
+                <PopoverContent className="w-80 z-50 bg-popover text-popover-foreground">
                     <div className="space-y-2">
                         <h4 className="font-medium leading-none">{user.nome}</h4>
                         <p className="text-sm text-muted-foreground">{user.email}</p>
                     </div>
 
                     <div className="flex flex-col gap-2 mt-4">
-                        <Button variant="outline" onClick={handleMudarSenha} >
+                        <Button variant="outline" onClick={handleMudarSenha}>
                             <Key size={32} />
                             Mudar a Senha
                         </Button>
@@ -63,6 +63,6 @@ export default function BotaoUser() {
             </Popover>
 
             <Toaster />
-        </div>
+        </>
     )
 }

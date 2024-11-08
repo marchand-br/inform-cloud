@@ -1,9 +1,9 @@
 export default  {
-    background: 'hsl(20 14.3% 4.1%)',
-    foreground: 'hsl(0 0% 95%)',
-    card: 'hsl(24 9.8% 10%)',
+    background: 'hsla(20 14.3% 4.1%)',
+    foreground: 'hsla(0 0% 95%)',
+    card: 'hsla(24 9.8% 10%)',
     "card-foreground": 'hsl(0 0% 95%)',
-    "popover": '#1C1917', // 'hsl(0 0% 9%)',
+    popover:  'hsla(0 0% 9%)', // '#1C1917', 
     "popover-foreground": 'hsl(0 0% 95%)',
     primary: 'hsl(346.8 77.2% 49.8%)',
     "primary-foreground": 'hsl(355.7 100% 97.3%)',

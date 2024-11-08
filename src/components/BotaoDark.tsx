@@ -34,7 +34,7 @@ export default function BotaoDark() {
                 onPressedChange={() => setColor(cor)}
                 className="justify-start text-xs"
             >
-                <div className={`p-1 bg-[${codCor}] rounded-full`}>
+                <div className={`p-1 ${codCor} rounded-full`}>
                     <Check size={24} 
                         className={`text-white ${color !== cor ? "invisible" : "visible"}`}
                     />
@@ -60,7 +60,7 @@ export default function BotaoDark() {
         <Popover>
             <PopoverTrigger asChild>
                 <Button variant="outline">
-                    <Palette size={40} weight='bold' className='text-primary'  />
+                    <Palette size={40} weight='bold' />
                 </Button>
             </PopoverTrigger>
 
@@ -73,13 +73,13 @@ export default function BotaoDark() {
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 mb-2">
-                    <BotaoCor cor="blue"   nomeCor="Azul"     codCor="#3D82F1" />
-                    <BotaoCor cor="red"    nomeCor="Vermelho" codCor="#DB292C" />
-                    <BotaoCor cor="green"  nomeCor="Verde"    codCor="#29C566" />
-                    <BotaoCor cor="orange" nomeCor="Laranja"  codCor="#E95921" />
-                    <BotaoCor cor="yellow" nomeCor="Amarelo"  codCor="#FACC3B" />
-                    <BotaoCor cor="violet" nomeCor="Cinza"    codCor="#6D29D4" />
-                    <BotaoCor cor="zinc"   nomeCor="Violeta"  codCor="#18181B" />
+                    <BotaoCor cor="blue"   nomeCor="Azul"     codCor="bg-blue-600" />
+                    <BotaoCor cor="red"    nomeCor="Vermelho" codCor="bg-red-600" />
+                    <BotaoCor cor="green"  nomeCor="Verde"    codCor="bg-green-700" />
+                    <BotaoCor cor="orange" nomeCor="Laranja"  codCor="bg-orange-500" />
+                    <BotaoCor cor="yellow" nomeCor="Amarelo"  codCor="bg-yellow-400" />
+                    <BotaoCor cor="violet" nomeCor="Cinza"    codCor="bg-zinc-800" />
+                    <BotaoCor cor="zinc"   nomeCor="Violeta"  codCor="bg-violet-600" />
                 </div>
 
                 <Separator />

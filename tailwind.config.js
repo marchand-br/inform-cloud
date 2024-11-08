@@ -33,8 +33,8 @@ export default {
   				foreground: 'hsl(var(--card-foreground))'
   			},
   			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
+  				DEFAULT: 'hsla(var(--popover))',
+  				foreground: 'hsla(var(--popover-foreground))'
   			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
@@ -72,7 +72,14 @@ export default {
   plugins: [
 		require("tailwindcss-animate"),
 		createThemes({
-			"dark-red": dark_red,
-		})
+			"dark-red": dark_red
+		}, 
+		{
+			produceCssVariable: (colorName) => `--twc-${colorName}`,
+			produceThemeClass: (themeName) => `${themeName}`,
+			produceThemeVariant: (themeName) => `theme-${themeName}`,
+			defaultTheme: 'dark-red',
+			strict: false
+		 })
 	],
 }
