@@ -1,5 +1,6 @@
 import { createThemes } from "tw-colors";
 import dark_red from "./src/styles/themes/dark-red";
+import light_red from "./src/styles/themes/light-red";
 
 export default {
   content: [
@@ -71,15 +72,18 @@ export default {
   },
   plugins: [
 		require("tailwindcss-animate"),
-		createThemes({
-			"dark-red": dark_red
-		}, 
-		{
-			produceCssVariable: (colorName) => `--twc-${colorName}`,
-			produceThemeClass: (themeName) => `${themeName}`,
-			produceThemeVariant: (themeName) => `theme-${themeName}`,
-			defaultTheme: 'dark-red',
-			strict: false
-		 })
-	],
+		createThemes(
+			{
+				"dark-red": dark_red,
+				"light-red": light_red,
+			},
+			{
+				produceCssVariable: (colorName) => `--twc-${colorName}`,
+				produceThemeClass: (themeName) => `${themeName}`,
+				produceThemeVariant: (themeName) => `theme-${themeName}`,
+				defaultTheme: 'light-red',
+			// 	strict: false
+			}
+		)
+	]
 }

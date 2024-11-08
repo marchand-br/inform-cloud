@@ -32,7 +32,9 @@ export default function AdmHome() {
                     </CardFooter>
                 </Card>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, neques sint. Quibusdam cupiditate cum repellat doloribus minima asperiores vitae culpa sint, esse voluptatibus consequuntur nulla labore cumque aperiam possimus impedit?</p>
+                <div className="bg-popover text-popover-foreground">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, neques sint. Quibusdam cupiditate cum repellat doloribus minima asperiores vitae culpa sint, esse voluptatibus consequuntur nulla labore cumque aperiam possimus impedit?</p>
+                </div>
                 <br />
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat nisi ipsam, voluptate dolor soluta numquam sequi voluptatibus minus, quisquam deserunt laboriosam dolores aliquam illo aliquid modi culpa? Perspiciatis, odio minima.</p>
                 <br />

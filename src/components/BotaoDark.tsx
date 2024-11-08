@@ -32,7 +32,7 @@ export default function BotaoDark() {
             <Toggle variant="outline" 
                 pressed={color === cor} 
                 onPressedChange={() => setColor(cor)}
-                className="justify-start text-xs"
+                className="justify-start text-xs text-foreground"
             >
                 <div className={`p-1 ${codCor} rounded-full`}>
                     <Check size={24} 
@@ -64,7 +64,7 @@ export default function BotaoDark() {
                 </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="w-96">
+            <PopoverContent className="w-96 bg-background text-popover-foreground">
                 <div className="space-y-4">
                     <h4 className="font-medium leading-none">Tema do Sistema</h4>
                     <p className="text-sm text-muted-foreground leading-8">
