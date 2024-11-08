@@ -1,3 +1,6 @@
+import { createThemes } from "tw-colors";
+import dark_red from "./src/styles/themes/dark-red";
+
 export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -5,7 +8,7 @@ export default {
   ],
 	darkMode: ['class', "class"], // false or "class" or "media"
   theme: {
-  	extend: {
+	extend: {
 		screens: {
 			'tam-1' : '430px',
 			'tam-2' : '640px',
@@ -20,7 +23,9 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-  		colors: {
+	},
+  	extends: {
+		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -65,6 +70,9 @@ export default {
   	}
   },
   plugins: [
-      require("tailwindcss-animate")
-],
+		require("tailwindcss-animate"),
+		createThemes({
+			"dark-red": dark_red,
+		})
+	],
 }

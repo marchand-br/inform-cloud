@@ -10,7 +10,7 @@ export default function Layout({ children }: Props) {
     console.log(theme.color)
 
     return (
-        <div className={`bg-background text-foreground ${theme.color}`}>
+        <div className={`${theme.color} bg-background text-foreground`}>
             { children }
         </div>
     )

@@ -28,7 +28,7 @@ export default function BotaoUser() {
     }
 
     return (
-        <>
+        <div>
             <Popover>
                 <PopoverTrigger asChild>
                     <Button variant="outline">
@@ -63,6 +63,6 @@ export default function BotaoUser() {
             </Popover>
 
             <Toaster />
-        </>
+        </div>
     )
 }

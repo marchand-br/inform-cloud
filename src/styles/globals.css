@@ -43,9 +43,13 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --tam-1 : 430px,
+    --tam-2 : 640px,
+    --tam-3 : 768px,
+    --tam-4 : 1024px,
   }
 
-  .dark {
+  .dark1 {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -72,7 +76,7 @@ body {
     --chart-5: 340 75% 55%;
   }
 
-  .light-blue {
+  .light-blue1 {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -100,7 +104,7 @@ body {
     --chart-5: 27 87% 67%;
   }
 
-  .dark-blue {
+  .dark-blue1 {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -127,7 +131,7 @@ body {
     --chart-5: 340 75% 55%;
   }
 
-  .light-orange {
+  .light-orange1 {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
     --card: 0 0% 100%;
@@ -155,7 +159,7 @@ body {
     --chart-5: 27 87% 67%;
   }
 
-  .dark-orange {
+  .dark-orange1 {
     --background: 20 14.3% 4.1%;
     --foreground: 60 9.1% 97.8%;
     --card: 20 14.3% 4.1%;
@@ -182,7 +186,7 @@ body {
     --chart-5: 340 75% 55%;
   }
 
-  .light-red {
+  .light-red1 {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -210,7 +214,7 @@ body {
     --chart-5: 27 87% 67%;
   }
 
-  .dark-red {
+  .dark-red1 {
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
     --card: 24 9.8% 10%;
@@ -237,7 +241,7 @@ body {
     --chart-5: 340 75% 55%;
   }
 
-  .light-yellow {
+  .light-yellow1 {
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
     --card: 0 0% 100%;
@@ -265,7 +269,7 @@ body {
     --chart-5: 27 87% 67%;
   }
  
-  .dark-yellow {
+  .dark-yellow1 {
     --background: 20 14.3% 4.1%;
     --foreground: 60 9.1% 97.8%;
     --card: 20 14.3% 4.1%;
@@ -292,7 +296,7 @@ body {
     --chart-5: 340 75% 55%;
   }
 
-  .light-green {
+  .light-green1 {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -320,7 +324,7 @@ body {
     --chart-5: 27 87% 67%;
   }
  
-  .dark-green {
+  .dark-green1 {
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
     --card: 24 9.8% 10%;
@@ -347,7 +351,7 @@ body {
     --chart-5: 340 75% 55%;
   }
 
-  .light-violet {
+  .light-violet1 {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
@@ -375,7 +379,7 @@ body {
     --chart-5: 27 87% 67%;
   }
  
-  .dark-violet {
+  .dark-violet1 {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
     --card: 224 71.4% 4.1%;
@@ -402,7 +406,7 @@ body {
     --chart-5: 340 75% 55%;
   }
 
-  .zinc {
+  .zinc1 {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -430,7 +434,7 @@ body {
     --chart-5: 27 87% 67%;
   }
  
-  .dark-zinc {
+  .dark-zinc1 {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;

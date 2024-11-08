@@ -81,13 +81,13 @@ export default function AdmLogin() {
     return (
         <div 
             aria-label="Foto de Nik Lanús extraída do site Unsplash"
-            className="h-screen bg-quarto bg-cover bg-no-repeat lex justify-center md:justify-start"
+            className="h-screen bg-quarto bg-cover bg-no-repeat flex justify-center md:justify-start"
         >
             <div className={`
                 h-screen w-full bg-card flex flex-col justify-between 
                 tam-1:w-[420px] tam-2:w-[520px] transition-all duration-300
                 pt-10 pb-8  
-                border-x-8 border-x-slate-600 bg-clip-padding border-opacity-5 md:border-l-0 
+                border-x-8 border-x-slate-600 bg-clip-padding border-opacity-5 md:border-l-0
             `}>
                 <div className="mb-8">
                     <div className="mt-2 mb-8">

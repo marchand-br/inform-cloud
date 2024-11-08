@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { Shield } from 'phosphor-react';
+import { ScrollArea } from "@/components/ui/scroll-area";
 import BotaoUser from './BotaoUser';
 import BotaoDark from './BotaoDark';
 
@@ -12,8 +13,8 @@ export default function AdmLayout({ children }: Props) {
     return (
         <div className="h-screen w-full">
             <header className={`
-                sticky top-0 z-50 px-4 border-b-2 border-border/40 bg-background/95 
-                backdrop-blur supports-[backdrop-filter]:bg-background/60
+                sticky top-0 z-10 px-4 max-h-[70px] border-b-2 border-border/40 text-foreground
+                bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60
             `}>
                 <div className="flex items-center py-2">
                     <h1 className="flex text-card-foreground font-semibold text-xl md:text-2xl">
@@ -30,13 +31,13 @@ export default function AdmLayout({ children }: Props) {
                 </div>
             </header>
 
-            <main className='flex'>
-                <div className='w-12'>
+            <main className="flex">
+                <div className='w-16'>
                     {/* menu lateral */}
                 </div>
-                <div className="w-full">
+                <ScrollArea className="h-screen max-h-[calc(100vh-70px)] overflow-y-auto">
                     { children }
-                </div>
+                </ScrollArea>
             </main>
         </div>
     )
