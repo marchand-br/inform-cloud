@@ -1,9 +1,16 @@
 import { ReactNode } from 'react'
 import { Buildings, Shield, Users } from 'phosphor-react';
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from './ui/button';
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+  } from "@/components/ui/tooltip";
+  
 import BotaoUser from './BotaoUser';
 import BotaoDark from './BotaoDark';
-import { Button } from './ui/button';
 
 interface Props {
 	children: ReactNode
@@ -40,12 +47,32 @@ export default function AdmLayout({ children }: Props) {
                     border-r-2 border-border/90 gap-2
                 `}>
                     {/* menu lateral */}
-                    <Button>
-                        <Buildings weight='bold' />
-                    </Button>
-                    <Button>
-                        <Users weight='bold' />
-                    </Button>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button>
+                                    <Buildings weight='bold' />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent className='bg-secondary text-secondary-foreground'>
+                                <p>Cadastro de Hotéis</p>
+                            </TooltipContent>  
+                        </Tooltip>
+                    </TooltipProvider>
+
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button>
+                                    <Users weight='bold' />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent className='bg-secondary text-secondary-foreground'>
+                                <p>Cadastro de Usuários</p>
+                            </TooltipContent>  
+                        </Tooltip>
+                    </TooltipProvider>
+
                 </div>
 
                 <ScrollArea className="w-full h-screen overflow-y-auto">

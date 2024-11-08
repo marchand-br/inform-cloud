@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { useTheme } from "@/hooks/use-theme";
 
 interface Props {
@@ -7,7 +7,10 @@ interface Props {
 
 export default function Layout({ children }: Props) {
 	const theme = useTheme();
-    console.log(theme.color)
+    
+    useEffect(() => {
+        console.log(theme.color);
+    }, [theme.color])
 
     return (
         <div className={`${theme.color} bg-background text-foreground`}>

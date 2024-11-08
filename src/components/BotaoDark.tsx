@@ -51,8 +51,7 @@ export default function BotaoDark() {
             name : color,
             color : theme,
             dark,
-        }))
-
+        }));
         // window.location.reload();
     }
 
@@ -64,7 +63,7 @@ export default function BotaoDark() {
                 </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="w-96 bg-background text-popover-foreground">
+            <PopoverContent className={`w-96 ${theme.color}`}> 
                 <div className="space-y-4">
                     <h4 className="font-medium leading-none">Tema do Sistema</h4>
                     <p className="text-sm text-muted-foreground leading-8">

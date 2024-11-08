@@ -18,7 +18,6 @@ export default  {
     border: 'hsl(0 0% 89.8%)',
     input: 'hsl(0 0% 89.8%)',
     ring: 'hsl(0 72.2% 50.6%)',
-    radius: 'hsl(0.5rem)',
     "chart-1": 'hsl(12 76% 61%)',
     "chart-2": 'hsl(173 58% 39%)',
     "chart-3": 'hsl(197 37% 24%)',

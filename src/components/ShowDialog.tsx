@@ -10,6 +10,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+import { useTheme } from "@/hooks/use-theme";
 
 interface Props {
     title: string;
@@ -28,13 +29,14 @@ export default function ShowDialog({
     handleConfirm,
     children
 }: Props) {
+	const theme = useTheme();
 
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
                 {children}
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className={`${theme.color}`}> 
                 <AlertDialogHeader>
                     <AlertDialogTitle>{ title }</AlertDialogTitle>
                     <AlertDialogDescription>{ description }</AlertDialogDescription>

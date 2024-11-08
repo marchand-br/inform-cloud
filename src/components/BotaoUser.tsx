@@ -12,11 +12,13 @@ import { useAppDispatch } from "@/redux/store";
 import { logout } from "@/redux/user-slice";
 import ShowDialog from "@/components/ShowDialog";
 import { appToast } from "./AppToast";
+import { useTheme } from "@/hooks/use-theme";
 
   
 export default function BotaoUser() {
     const dispatch = useAppDispatch();
 	const user = useAuth();
+	const theme = useTheme();
     
     function handleLogout() {
         dispatch(logout());
@@ -36,7 +38,7 @@ export default function BotaoUser() {
                     </Button>
                 </PopoverTrigger>
 
-                <PopoverContent className="w-80 z-50 bg-popover text-popover-foreground">
+                <PopoverContent className={`w-80 z-50 ${theme.color}`}> 
                     <div className="space-y-2">
                         <h4 className="font-medium leading-none">{user.nome}</h4>
                         <p className="text-sm text-muted-foreground">{user.email}</p>
@@ -53,7 +55,7 @@ export default function BotaoUser() {
                             description="Confirma sair do sistema?"
                             handleConfirm={handleLogout}
                         >
-                            <Button variant="destructive">  
+                            <Button>  
                                 <SignOut size={32} />
                                 Sair do Sistema
                             </Button>
